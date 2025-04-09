@@ -5,6 +5,7 @@
 package com.roc.cheesetrade.front;
 
 import com.roc.cheesetrade.entities.LoginValidator;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -84,6 +85,11 @@ public class WindowLogin extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 passLoginFocusLost(evt);
+            }
+        });
+        passLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passLoginKeyPressed(evt);
             }
         });
 
@@ -193,6 +199,14 @@ public class WindowLogin extends javax.swing.JFrame {
        validarLogin();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void passLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passLoginKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                btnLogin.doClick(); // Simula clic en el botón login
+                }
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_passLoginKeyPressed
 
     /**
      * @param args the command line arguments
