@@ -174,7 +174,7 @@ public class Inventario extends javax.swing.JFrame {
 
                     Inv productoAEditar = invDAO.obtenerProducto(idCliente);
 
-       //             edicionInventario.elProducto = productoAEditar;
+                    edicionInventario.elProd = productoAEditar;
 
                     edicionInventario.llenarDatosProd();
 
@@ -196,33 +196,33 @@ public class Inventario extends javax.swing.JFrame {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    int idCliente = (int) modeloTabla.getValueAt(tblClientes.getSelectedRow(), 0);
-                    String nombreCliente = modeloTabla.getValueAt(tblClientes.getSelectedRow(), 1).toString();
+                    int idProd = (int) modeloTabla.getValueAt(tblClientes.getSelectedRow(), 0);
+                    String nombreProd = modeloTabla.getValueAt(tblClientes.getSelectedRow(), 1).toString();
 
 //                    JOptionPane.showMessageDialog(null, "Se eliminará el cliente con ID: "
 //                            + idCliente + ", Nombre: " + nombreCliente,
 //                            "Aviso",
 //                            JOptionPane.WARNING_MESSAGE
 //                    );
-                    int seleccion = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el cliente con ID: "
-                            + idCliente + ", Nombre: " + nombreCliente + "?",
+                    int seleccion = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el Producto con ID: "
+                            + idProd + ", Nombre: " + nombreProd + "?",
                             "Confirmar Eliminar", JOptionPane.OK_CANCEL_OPTION,
                             JOptionPane.WARNING_MESSAGE
                     );
 
                     if (seleccion == JOptionPane.OK_OPTION) {
 
-                        int registrosAfectados = invDAO.eliminarProd(idCliente);
+                        int registrosAfectados = invDAO.eliminarProd(idProd);
 
                         if (registrosAfectados > 0) {
-                            System.out.println("SE ELIMINÓ EL CLIENTE CORRECTAMENTE");
+                            System.out.println("SE ELIMINÓ EL PRODUCTO CORRECTAMENTE");
 
-                            JOptionPane.showMessageDialog(null, "SE ELIMINÓ EL CLIENTE "
-                                    + nombreCliente + " CORRECTAMENTE", "AVISO DE DELETE",
+                            JOptionPane.showMessageDialog(null, "SE ELIMINÓ EL PRODUCTO "
+                                    + nombreProd + " CORRECTAMENTE", "AVISO DE DELETE",
                                     JOptionPane.INFORMATION_MESSAGE);
                         } else {
-                            JOptionPane.showMessageDialog(null, "NO SE PUDO ELIMINAR EL CLIENTE "
-                                    + nombreCliente + " CORRECTAMENTE", "AVISO DE DELETE",
+                            JOptionPane.showMessageDialog(null, "NO SE PUDO ELIMINAR EL PRODUCTO "
+                                    + nombreProd + " CORRECTAMENTE", "AVISO DE DELETE",
                                     JOptionPane.ERROR_MESSAGE);
                         }
                         
@@ -365,43 +365,6 @@ public class Inventario extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Inventario().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

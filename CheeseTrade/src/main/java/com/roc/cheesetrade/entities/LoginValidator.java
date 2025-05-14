@@ -21,7 +21,7 @@ public class LoginValidator {
                 ResultSet rs = stmt.executeQuery();
 
                 if (rs.next()) {
-                    return true; // Usuario y contraseña válidos
+                    return true;
                 }
             } catch (SQLException ex) {
                 System.err.println("Error de base de datos: " + ex.getMessage());

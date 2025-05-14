@@ -106,7 +106,8 @@ public class InvDAO {
                     + "prod_stock as stock,"
                     + "prod_peso_unitario as peso_unit, "
                     + "prod_tipo as tipo \n"
-                    + "from tblproductos";
+                    + "from tblproductos "
+                    + "where id_producto = ?;";
 
             pstm = conMySQL.prepareStatement(consulta);
             pstm.setInt(1, idProducto);
@@ -150,7 +151,7 @@ public class InvDAO {
         return productoDevuelto;
     }
 
-    public int actualizarCliente(Inv prodActualizar){
+    public int actualizarInv(Inv prodActualizar){
         Connection conMySQL = DBConexion.obtenerConexion();
         PreparedStatement pstm = null;
         
@@ -165,7 +166,7 @@ public class InvDAO {
                     + "    prod_precio = ?,\n"
                     + "    prod_stock = ?,\n"
                     + "    prod_peso_unitario = ?,\n"
-                    + "    prod_tipo = ?\n"
+                    + "    prod_tipo = ? \n"
                     + "WHERE\n"
                     + "    id_producto = ?;";
             
@@ -176,6 +177,7 @@ public class InvDAO {
             pstm.setInt(4, prodActualizar.getStock());
             pstm.setDouble(5, prodActualizar.getPeso_unit());
             pstm.setString(6, prodActualizar.getTipo());
+            pstm.setInt(7, prodActualizar.getIdProducto());
             
             registrosAfectados = pstm.executeUpdate();
             
@@ -201,7 +203,7 @@ public class InvDAO {
         return registrosAfectados;
     }
     
-    public int insertarCliente(Inv prodNuevo){
+    public int insertarInv(Inv prodNuevo){
         Connection conMySQL = DBConexion.obtenerConexion();
         PreparedStatement pstm = null;
         
@@ -210,7 +212,6 @@ public class InvDAO {
         try {
             
             String update = "INSERT INTO bd_cheesetrade.tblproductos (\n"
-                    + "    id_producto,\n"
                     + "    prod_nombre,\n"
                     + "    prod_descripcion,\n"
                     + "    prod_precio,\n"
@@ -219,7 +220,6 @@ public class InvDAO {
                     + "    prod_tipo\n"
                     + ")\n"
                     + "VALUES (\n"
-                    + "    ?,\n"
                     + "    ?,\n"
                     + "    ?,\n"
                     + "    ?,\n"
@@ -260,23 +260,23 @@ public class InvDAO {
         return registrosAfectados;
     }
     
-    public int eliminarProd(int idProd){
+    public int eliminarProd(int idProd) {
         Connection conMySQL = DBConexion.obtenerConexion();
         PreparedStatement pstm = null;
-        
+
         int registrosAfectados = 0;
-        
+
         try {
-            
-            String update = "DELETE FROM tblproducto where id_producto = ?;";
-            
+
+            String update = "DELETE FROM tblproductos where id_producto = ?;";
+
             pstm = conMySQL.prepareCall(update);
             pstm.setInt(1, idProd);
-            
+
             registrosAfectados = pstm.executeUpdate();
-            
+
             return registrosAfectados;
-        
+
         } catch (SQLException ex) {
             Logger.getLogger(InvDAO.class.getName()).log(
                     Level.SEVERE, ex.getMessage(), ex);
@@ -293,7 +293,36 @@ public class InvDAO {
                         Level.SEVERE, ex.getMessage(), ex);
             }
         }
-        
+
         return registrosAfectados;
     }
+
+    public int descontarStock(int idProducto, int cantidadVendida) {
+        Connection con = DBConexion.obtenerConexion();
+        PreparedStatement pstm = null;
+        int registros = 0;
+
+        try {
+            String sql = "UPDATE tblproductos SET prod_stock = prod_stock - ? WHERE id_producto = ?";
+            pstm = con.prepareStatement(sql);
+            pstm.setInt(1, cantidadVendida);
+            pstm.setInt(2, idProducto);
+
+            registros = pstm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(InvDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (pstm != null) {
+                    pstm.close();
+                }
+                DBConexion.cerrarConexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(InvDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return registros;
+    }
+
 }
