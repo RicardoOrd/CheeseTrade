@@ -18,8 +18,7 @@ public class UsuarioDAO {
 
     public boolean insertar(Usuario usuario) {
         String sql = "INSERT INTO tblusuarios (usuario, contraseña, correo, direccion, celular, rol, icon) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DBConexion.obtenerConexion();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConexion.obtenerConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, usuario.getUsuario());
             ps.setString(2, usuario.getContrasena());
@@ -39,9 +38,7 @@ public class UsuarioDAO {
     public List<Usuario> listar() {
         List<Usuario> lista = new ArrayList<>();
         String sql = "SELECT * FROM tblusuarios";
-        try (Connection conn = DBConexion.obtenerConexion();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+        try (Connection conn = DBConexion.obtenerConexion(); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 Usuario usuario = new Usuario();
@@ -62,14 +59,34 @@ public class UsuarioDAO {
     }
 
     public boolean eliminar(int id) {
-        String sql = "DELETE FROM tblusuarios WHERE id = ?";
-        try (Connection conn = DBConexion.obtenerConexion();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        String sql = "DELETE FROM tblusuarios WHERE id_usuario = ?";
+        try (Connection conn = DBConexion.obtenerConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public boolean actualizar(Usuario usuario) {
+        Connection con = DBConexion.obtenerConexion();
+        String sql = "UPDATE tblusuarios SET usuario=?, contraseña=?, correo=?, direccion=?, celular=?, rol=? WHERE id_usuario=?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, usuario.getUsuario());
+            ps.setString(2, usuario.getContrasena());
+            ps.setString(3, usuario.getCorreo());
+            ps.setString(4, usuario.getDireccion());
+            ps.setString(5, usuario.getCelular());
+            ps.setString(6, usuario.getRol());
+            ps.setInt(7, usuario.getId());
+
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            DBConexion.cerrarConexion();
         }
     }
 
@@ -81,6 +98,4 @@ public class UsuarioDAO {
         return Arrays.asList("icono1.png", "icono2.png", "icono3.png");
     }
 
-
 }
-
