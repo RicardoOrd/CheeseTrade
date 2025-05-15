@@ -29,10 +29,6 @@ public class AgregarUsuarioDialog extends javax.swing.JDialog {
             cmbRol.addItem(rol);
         }
 
-        List<String> iconos = dao.obtenerIconos();
-        for (String icon : iconos) {
-            cmbIcon.addItem(icon);
-        }
     }
 
     /**
@@ -53,8 +49,6 @@ public class AgregarUsuarioDialog extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         cmbRol = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        cmbIcon = new javax.swing.JComboBox<>();
         btnGuardar = new javax.swing.JButton();
         txtContrasena = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
@@ -85,8 +79,6 @@ public class AgregarUsuarioDialog extends javax.swing.JDialog {
         });
 
         jLabel6.setText("Rol");
-
-        jLabel7.setText("Icono");
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -126,11 +118,7 @@ public class AgregarUsuarioDialog extends javax.swing.JDialog {
                             .addGap(27, 27, 27)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6)
-                                .addComponent(cmbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cmbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cmbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
@@ -168,11 +156,7 @@ public class AgregarUsuarioDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbIcon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cmbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardar)
                 .addGap(35, 35, 35))
@@ -193,9 +177,8 @@ public class AgregarUsuarioDialog extends javax.swing.JDialog {
         String direccion = txtDireccion.getText();
         String contrasena = new String(txtContrasena.getPassword());
         String rol = cmbRol.getSelectedItem().toString();
-        String imagen = cmbIcon.getSelectedItem().toString();
 
-        Usuario usuario = new Usuario (nombre, contrasena, correo, direccion, celular, rol, imagen);
+        Usuario usuario = new Usuario (nombre, contrasena, correo, direccion, celular, rol);
        
         UsuarioDAO dao = new UsuarioDAO();
         boolean exito = dao.insertar(usuario);
@@ -224,7 +207,6 @@ public class AgregarUsuarioDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JComboBox<String> cmbIcon;
     private javax.swing.JComboBox<String> cmbRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -232,7 +214,6 @@ public class AgregarUsuarioDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField txtCelular;
     private javax.swing.JPasswordField txtContrasena;

@@ -17,7 +17,7 @@ public class Usuario {
     public Usuario() {
     }
     
-    public Usuario( String usuario, String contrasena, String correo, String direccion, String celular, String rol, String icon) {
+    public Usuario( String usuario, String contrasena, String correo, String direccion, String celular, String rol) {
         this.id = id;
         this.usuario = usuario;
         this.contrasena = contrasena;
@@ -25,7 +25,6 @@ public class Usuario {
         this.direccion = direccion;
         this.celular = celular;
         this.rol = rol;
-        this.icon = icon;
     }
 
     

@@ -278,11 +278,10 @@ public class Inventario extends javax.swing.JFrame {
         tblClientes = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Clientes");
 
         lblInquilinos.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
-        lblInquilinos.setForeground(new java.awt.Color(51, 51, 255));
         lblInquilinos.setText("Inventario");
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -311,7 +310,6 @@ public class Inventario extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblClientes);
 
         btnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnAgregar.setForeground(new java.awt.Color(51, 153, 0));
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

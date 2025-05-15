@@ -35,36 +35,28 @@
                       <EmptySpace min="556" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnInventario" min="-2" pref="196" max="-2" attributes="0"/>
-                                  <Component id="btnVentas" min="-2" pref="196" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="btnUsuario" min="-2" pref="196" max="-2" attributes="0"/>
-                                  <Component id="btnHistorialVentas" min="-2" pref="196" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblHome" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblUsuarioHome" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="btnCerrarSesion" min="-2" pref="196" max="-2" attributes="0"/>
-                              <Component id="btnFacturas" min="-2" pref="196" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="lblHome" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblUsuarioHome" max="32767" attributes="0"/>
                       <EmptySpace min="53" pref="53" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnInventario" min="-2" pref="196" max="-2" attributes="0"/>
+                          <Component id="btnVentas" min="-2" pref="196" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="btnUsuario" min="-2" pref="196" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                              <Component id="btnHistorialVentas" min="-2" pref="196" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="btnCerrarSesion" min="-2" pref="196" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -88,12 +80,11 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnInventario" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                   <Component id="btnUsuario" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
-                  <Component id="btnFacturas" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
+                  <Component id="btnHistorialVentas" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnVentas" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
-                  <Component id="btnHistorialVentas" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                   <Component id="btnCerrarSesion" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
@@ -169,14 +160,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInventarioActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnFacturas">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Facturas"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnCerrarSesion">
       <Properties>

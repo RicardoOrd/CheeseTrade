@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +18,55 @@ import javax.swing.table.DefaultTableModel;
  * @author carl-
  */
 public class InvDAO {
+
+    public List<Inv> listar() {
+        List<Inv> productos = new ArrayList<>();
+        Connection conMySQL = DBConexion.obtenerConexion();
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            String consulta = "select id_producto as idProducto, "
+                    + "prod_nombre as nombreProd,"
+                    + "prod_descripcion as descripcion, "
+                    + "prod_precio as precio, "
+                    + "prod_stock as stock, "
+                    + "prod_peso_unitario as peso_unit, "
+                    + "prod_tipo as tipo "
+                    + "from tblproductos";
+
+            pstm = conMySQL.prepareStatement(consulta);
+            rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                Inv prod = new Inv();
+                prod.setIdProducto(rs.getInt("idProducto"));
+                prod.setNombreProd(rs.getString("nombreProd"));
+                prod.setDescripcion(rs.getString("descripcion"));
+                prod.setPrecio(rs.getDouble("precio"));
+                prod.setStock(rs.getInt("stock"));
+                prod.setPeso_unit(rs.getDouble("peso_unit"));
+                prod.setTipo(rs.getString("tipo"));
+                productos.add(prod);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(InvDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstm != null) {
+                    pstm.close();
+                }
+                DBConexion.cerrarConexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(InvDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            }
+        }
+        return productos;
+    }
 
     public void obtenerListadoProd(DefaultTableModel modeloTabla) {
         Connection conMySQL = DBConexion.obtenerConexion();
@@ -116,7 +167,7 @@ public class InvDAO {
 
             if (rs.next()) {
                 productoDevuelto = new Inv();
-                
+
                 productoDevuelto.setIdProducto(rs.getInt("idProducto"));
                 productoDevuelto.setNombreProd(rs.getString("nombreProd"));
                 productoDevuelto.setDescripcion(rs.getString("descripcion"));
@@ -124,9 +175,9 @@ public class InvDAO {
                 productoDevuelto.setStock(rs.getInt("stock"));
                 productoDevuelto.setPeso_unit(rs.getDouble("peso_unit"));
                 productoDevuelto.setTipo(rs.getString("tipo"));
-                
+
             }
-            
+
             return productoDevuelto;
 
         } catch (SQLException ex) {
@@ -151,14 +202,14 @@ public class InvDAO {
         return productoDevuelto;
     }
 
-    public int actualizarInv(Inv prodActualizar){
+    public int actualizarInv(Inv prodActualizar) {
         Connection conMySQL = DBConexion.obtenerConexion();
         PreparedStatement pstm = null;
-        
+
         int registrosAfectados = 0;
-        
+
         try {
-            
+
             String update = "UPDATE tblproductos\n"
                     + "SET\n"
                     + "    prod_nombre = ?,\n"
@@ -169,7 +220,7 @@ public class InvDAO {
                     + "    prod_tipo = ? \n"
                     + "WHERE\n"
                     + "    id_producto = ?;";
-            
+
             pstm = conMySQL.prepareCall(update);
             pstm.setString(1, prodActualizar.getNombreProd());
             pstm.setString(2, prodActualizar.getDescripcion());
@@ -178,11 +229,11 @@ public class InvDAO {
             pstm.setDouble(5, prodActualizar.getPeso_unit());
             pstm.setString(6, prodActualizar.getTipo());
             pstm.setInt(7, prodActualizar.getIdProducto());
-            
+
             registrosAfectados = pstm.executeUpdate();
-            
+
             return registrosAfectados;
-        
+
         } catch (SQLException ex) {
             Logger.getLogger(InvDAO.class.getName()).log(
                     Level.SEVERE, ex.getMessage(), ex);
@@ -199,18 +250,18 @@ public class InvDAO {
                         Level.SEVERE, ex.getMessage(), ex);
             }
         }
-        
+
         return registrosAfectados;
     }
-    
-    public int insertarInv(Inv prodNuevo){
+
+    public int insertarInv(Inv prodNuevo) {
         Connection conMySQL = DBConexion.obtenerConexion();
         PreparedStatement pstm = null;
-        
+
         int registrosAfectados = 0;
-        
+
         try {
-            
+
             String update = "INSERT INTO bd_cheesetrade.tblproductos (\n"
                     + "    prod_nombre,\n"
                     + "    prod_descripcion,\n"
@@ -227,7 +278,7 @@ public class InvDAO {
                     + "    ?,\n"
                     + "    ?\n"
                     + ")";
-            
+
             pstm = conMySQL.prepareCall(update);
             pstm.setString(1, prodNuevo.getNombreProd());
             pstm.setString(2, prodNuevo.getDescripcion());
@@ -235,11 +286,11 @@ public class InvDAO {
             pstm.setInt(4, prodNuevo.getStock());
             pstm.setDouble(5, prodNuevo.getPeso_unit());
             pstm.setString(6, prodNuevo.getTipo());
-            
+
             registrosAfectados = pstm.executeUpdate();
-            
+
             return registrosAfectados;
-        
+
         } catch (SQLException ex) {
             Logger.getLogger(InvDAO.class.getName()).log(
                     Level.SEVERE, ex.getMessage(), ex);
@@ -256,10 +307,10 @@ public class InvDAO {
                         Level.SEVERE, ex.getMessage(), ex);
             }
         }
-        
+
         return registrosAfectados;
     }
-    
+
     public int eliminarProd(int idProd) {
         Connection conMySQL = DBConexion.obtenerConexion();
         PreparedStatement pstm = null;
@@ -297,32 +348,26 @@ public class InvDAO {
         return registrosAfectados;
     }
 
-    public int descontarStock(int idProducto, int cantidadVendida) {
-        Connection con = DBConexion.obtenerConexion();
-        PreparedStatement pstm = null;
-        int registros = 0;
+    public int descontarStock(Connection con, int idProducto, int cantidadVendida) {
+    PreparedStatement pstm = null;
+    int registros = 0;
 
+    try {
+        String sql = "UPDATE tblproductos SET prod_stock = prod_stock - ? WHERE id_producto = ?";
+        pstm = con.prepareStatement(sql);
+        pstm.setInt(1, cantidadVendida);
+        pstm.setInt(2, idProducto);
+        registros = pstm.executeUpdate();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
         try {
-            String sql = "UPDATE tblproductos SET prod_stock = prod_stock - ? WHERE id_producto = ?";
-            pstm = con.prepareStatement(sql);
-            pstm.setInt(1, cantidadVendida);
-            pstm.setInt(2, idProducto);
-
-            registros = pstm.executeUpdate();
+            if (pstm != null) pstm.close();
         } catch (SQLException ex) {
-            Logger.getLogger(InvDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (pstm != null) {
-                    pstm.close();
-                }
-                DBConexion.cerrarConexion();
-            } catch (SQLException ex) {
-                Logger.getLogger(InvDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            ex.printStackTrace();
         }
-
-        return registros;
     }
+    return registros;
+}
 
 }

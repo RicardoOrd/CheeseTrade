@@ -1,12 +1,16 @@
 C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\service\VentaService.java
 C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\entities\Producto.java
 C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\front\Editar_Agregar.java
+C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\front\HistorialVentas.java
+C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\entities\VentaHistorial.java
 C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\db\DBConexion.java
+C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\dao\HistorialDAO.java
 C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\entities\Usuario.java
 C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\front\WindowLogin.java
 C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\entities\LoginValidator.java
 C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\dao\DetalleVentaDAO.java
 C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\dao\InvDAO.java
+C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\entities\DetalleHistorial.java
 C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\dao\VentaDAO.java
 C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\front\Inventario.java
 C:\Users\nuevo\Documents\NetBeansProjects\CheeseTrade\src\main\java\com\roc\cheesetrade\front\Ventas.java
